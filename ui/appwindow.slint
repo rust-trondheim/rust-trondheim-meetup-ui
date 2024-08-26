@@ -2,7 +2,9 @@ import { Button, VerticalBox } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
     in-out property <int> counter: 42;
+    in-out property <string> first_issue_title: "None";
     callback request-increase-value();
+    callback request-first-issue-title();
     VerticalBox {
         Text {
             text: "Counter: \{root.counter}";
@@ -12,6 +14,17 @@ export component AppWindow inherits Window {
             text: "Increase value";
             clicked => {
                 root.request-increase-value();
+            }
+        }
+
+        Text {
+            text: "First issue: \{root.first_issue_title}";
+        }
+
+        Button {
+            text: "Get first issue title";
+            clicked => {
+                root.request-first-issue-title();
             }
         }
     }
