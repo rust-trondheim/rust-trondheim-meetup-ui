@@ -1,8 +1,12 @@
 import { Button, VerticalBox } from "std-widgets.slint";
 
+export struct Issue {
+    title: string,
+}
+
 export component AppWindow inherits Window {
     in-out property <int> counter: 42;
-    in-out property <[string]> issue_titles: [];
+    in-out property <[Issue]> issues: [];
     callback request-increase-value();
     callback request-first-issue-title();
     VerticalBox {
@@ -18,9 +22,9 @@ export component AppWindow inherits Window {
         }
 
         VerticalLayout {
-            for issue_title in issue_titles: VerticalLayout {
+            for issue in issues: VerticalLayout {
                 Text {
-                    text: issue_title;
+                    text: issue.title;
                 }
             }
             Button {
